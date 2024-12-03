@@ -19,3 +19,11 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
  * The cleaner shorthand for printing output.
  */
 fun Any?.println() = println(this)
+
+fun createIntPairFromStringList (input: List<String>): Pair<List<Int>, List<Int>> {
+    return input.map {list ->
+        val first = list.substringBefore(" ").toInt()
+        val second = list.substringAfterLast(" ").toInt()
+        first to second
+    }.unzip()
+}
