@@ -1,6 +1,19 @@
+import kotlin.math.abs
+
 fun main() {
     fun part1(input: List<String>): Int {
-        return input.size
+        val (left, right) = input.map {list ->
+            val first = list.substringBefore(" ").toInt()
+            val second = list.substringAfterLast(" ").toInt()
+            first to second
+        }.unzip()
+
+        var distance = 0
+
+        left.sorted().zip(right.sorted()).forEach { (first, second) ->
+            distance += abs(second - first)
+        }
+        return distance
     }
 
     fun part2(input: List<String>): Int {
