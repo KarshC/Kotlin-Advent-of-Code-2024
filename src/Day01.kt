@@ -13,7 +13,15 @@ fun main() {
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        val (left,right) = createIntPairFromStringList(input)
+        val frequencies: Map<Int, Int> = right.groupingBy { it }.eachCount()
+
+        var result = 0
+        left.forEach { num ->
+            result += num * frequencies.getOrDefault(num, 0)
+        }
+
+        return result
     }
 
     // Test if implementation meets criteria from the description, like:
